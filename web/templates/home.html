@@ -1,110 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dự đoán đánh giá</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
-</head>
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-    <header class='header'>
-        <div class='header__container'>
-            <div class='logo'>
-                <img src="https://res.cloudinary.com/dxnfxl89q/image/upload/v1636613580/samples/tiki_logo_qnfhmt.png"
-                    alt="" />
+  <body class="bg-light">
+    <div class="container">
+      <header class="navbar shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="container-fluid">
+          <div class="row d-flex align-items-center">
+            <div class="col-12 col-md-3 col-lg-2">
+              <a href="#" id="logo">
+                <img
+                  src="/static/images/tiki_logo.png"
+                  alt="..."
+                  style="width: 100%"
+                />
+              </a>
             </div>
-            <div class='header__title'>
+            <div class="col-md">
+              <h1 class="d-none d-xl-block text-center fs-3 m-0">
+                Phân loại dữ liệu bình luận sản phẩm trên Website Tiki
+              </h1>
+            </div>
+            <div
+              class="col-12 col-md-3 d-flex justify-content-end flex-column flex-md-row"
+            >
+              <a
+                class="btn btn-primary mb-2 mt-4 mb-md-0 mt-md-0 me-md-2"
+                role="button"
+                href="https://github.com/Lee-TB/ml-1st-project-svm"
+                target="_blank"
+                >Github</a
+              >
+              <div class="dropdown">
+                <button
+                  class="btn btn-primary dropdown-toggle d-block w-100"
+                  type="button"
+                  id="contact"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Liên hệ
+                </button>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="contact"
+                  style="right: 0; left: auto"
+                >
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="mailto:ducb1812262@student.ctu.edu.vn"
+                      >ducb1812262@student.ctu.edu.vn</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="mailto:ducb1812262@student.ctu.edu.vn"
+                      >pilb1812295@student.ctu.edu.vn</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="mailto:ducb1812262@student.ctu.edu.vn"
+                      >tamb1812301@student.ctu.edu.vn</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="shadow-sm p-3 mb-5 bg-body rounded p-4">
+        <form action="/prediction" method="get" class="mb-3">
+          <div class="form-floating mb-3">
+            <textarea
+              class="form-control"
+              placeholder="Leave a comment here"
+              id="comment"
+              name="comment"
+              style="min-height: 200px; resize: none"
+              oninput="auto_grow(this)"
+            ></textarea>
+            <label for="comment">Bình luận của bạn</label>
+          </div>
+          <input class="btn btn-primary" type="submit" value="Dự đoán" />
+        </form>
+        <div id="predict">
+          <p id="predict-text-comment">Bình luận của bạn: "{{ comment }}"</p>
+          {% if predict.result %}
+          <p id="predict-text-star">
+            Tôi đoán bạn <span class="predict-pos"> {{ predict.msg }}</span> với
+            sản phẩm 😀
+          </p>
+          {% else %}
+          <p id="predict-text-star">
+            Tôi đoán bạn <span class="predict-nev"> {{ predict.msg }}</span> với
+            sản phẩm 😧
+          </p>
+          {% endif %}
+        </div>
+      </main>
+
+      <!-- <div class="title">
+            <div class="container">
                 <h1>Phân loại dữ liệu bình luận sản phẩm trên Website Tiki</h1>
             </div>
-            <ul class='menu'>
-                <li>
-                    <a href="https://github.com/duycarry123/tiki-comment-clsf" target="_blank">Github</a>
-                </li>
-                <li class="sub-menu">
-                    Liên hệ
-                    <ul>
-                        <li>
-                            duyb1812257@student.ctu.edu.vn
-                        </li>
-                        <li>
-                            ducb1812262@student.ctu.edu.vn
-                        </li>
-                    </ul>
-                </li>
-            </ul>
         </div>
-    </header>
-    <div class="title">
-        <div class="container">
-            <h1>Phân loại dữ liệu bình luận sản phẩm trên Website Tiki</h1>
-        </div>
-    </div>
-    <div class="body">
-        <div class="container">
-            <form id="form" action="/prediction" method="get">
-                <div class="form-group">
-                    <div class='text-wrapper'>
-                        <div class="form-text">
-                            <img src="https://res.cloudinary.com/dxnfxl89q/image/upload/v1636613580/samples/tiki_logo_qnfhmt.png"
-                                alt="" />
-                            <textarea placeholder="Nhập bình luận ở đây..." name="comment" id="comment" cols="10"
-                                rows="10"></textarea>
+        <div class="body">
+            <div class="container">
+                <form id="form" action="/prediction" method="get">
+                    <div class="form-group">
+                        <div class='text-wrapper'>
+                            <div class="form-text">
+                                <img src="https://res.cloudinary.com/dxnfxl89q/image/upload/v1636613580/samples/tiki_logo_qnfhmt.png"
+                                    alt="" />
+                                <textarea placeholder="Nhập bình luận ở đây..." name="comment" id="comment" cols="10"
+                                    rows="10"></textarea>
+                            </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <input id='submit-btn' type="submit" value="Dự đoán">
+                    </div>
+                </form>
+                <div id="predict">
+                    <p id="predict-text-comment">Bình luận của bạn: "{{ comment }}"</p>
+                    {% if predict.result %}
+                    <p id="predict-text-star">
+                        Tôi đoán bạn <span class="predict-pos"> {{ predict.msg }}</span> với sản phẩm 😀
+                    </p>
+                    {% else %}
+                    <p id="predict-text-star">
+                        Tôi đoán bạn <span class="predict-nev"> {{ predict.msg }}</span> với sản phẩm 😧
+                    </p>
+                    {% endif %}
                 </div>
-                <div class="form-group">
-                    <input id='submit-btn' type="submit" value="Dự đoán">
-                </div>
-            </form>
-            <div id="predict">
-                <p id="predict-text-comment">Bình luận của bạn: "{{ comment }}"</p>
-                {% if predict.result %}
-                <p id="predict-text-star">
-                    Tôi đoán bạn <span class="predict-pos"> {{ predict.msg }}</span> với sản phẩm 😀
-                </p>
-                {% else %}
-                <p id="predict-text-star">
-                    Tôi đoán bạn <span class="predict-nev"> {{ predict.msg }}</span> với sản phẩm 😧
-                </p>
-                {% endif %}
             </div>
-        </div>
+        </div> -->
+      <footer class="shadow-sm p-3 mb-2 bg-body rounded" style="height: 100px">
+        <figure class="text-center">
+          <blockquote class="blockquote">
+            <p class="mb-0">copyright © 2022</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            <cite title="Source Title">Lý Đức, Tấn Pil, Thanh Tâm</cite>
+          </figcaption>
+        </figure>
+      </footer>
     </div>
-    <footer>
-        Copyright © 2021.
-        Đức & Duy
-    </footer>
-</body>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
         const headerTitle = document.querySelector(".header__title");
 
-        window.addEventListener('scroll', () => {
-            console.log(window.scrollY)
-            console.log(headerTitle)
-            if (window.scrollY > 85) {
-                headerTitle.classList.add('active')
-            }else{
-                headerTitle.classList.remove('active')
-            }
-        })
-    });
-</script>
-
+        window.addEventListener("scroll", () => {
+          console.log(window.scrollY);
+          console.log(headerTitle);
+          if (window.scrollY > 85) {
+            headerTitle.classList.add("active");
+          } else {
+            headerTitle.classList.remove("active");
+          }
+        });
+      });
+      function auto_grow(element) {
+        element.style.height = "0px";
+        element.style.height = element.scrollHeight + "px";
+      }
+    </script>
+  </body>
 </html>

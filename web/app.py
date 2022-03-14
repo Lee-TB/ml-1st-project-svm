@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import model
+# import model
 
 # Khởi tạo server backend
 app = Flask(__name__, template_folder='templates')
