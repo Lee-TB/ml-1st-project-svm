@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự đoán đánh giá</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class='header'>
+        <div class='header__container'>
+            <div class='logo'>
+                <img src="https://res.cloudinary.com/dxnfxl89q/image/upload/v1636613580/samples/tiki_logo_qnfhmt.png"
+                    alt="" />
+            </div>
+            <div class='header__title'>
+                <h1>Phân loại dữ liệu bình luận sản phẩm trên Website Tiki</h1>
+            </div>
+            <ul class='menu'>
+                <li>
+                    <a href="https://github.com/duycarry123/tiki-comment-clsf" target="_blank">Github</a>
+                </li>
+                <li class="sub-menu">
+                    Liên hệ
+                    <ul>
+                        <li>
+                            duyb1812257@student.ctu.edu.vn
+                        </li>
+                        <li>
+                            ducb1812262@student.ctu.edu.vn
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="title">
+        <div class="container">
+            <h1>Phân loại dữ liệu bình luận sản phẩm trên Website Tiki</h1>
+        </div>
+    </div>
+    <div class="body">
+        <div class="container">
+            <form id="form" action="/prediction" method="get">
+                <div class="form-group">
+                    <div class='text-wrapper'>
+                        <div class="form-text">
+                            <img src="https://res.cloudinary.com/dxnfxl89q/image/upload/v1636613580/samples/tiki_logo_qnfhmt.png"
+                                alt="" />
+                            <textarea placeholder="Nhập bình luận ở đây..." name="comment" id="comment" cols="10"
+                                rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input id='submit-btn' type="submit" value="Dự đoán">
+                </div>
+            </form>
+            <div id="predict">
+                <p id="predict-text-comment">Bình luận của bạn: "{{ comment }}"</p>
+                {% if predict.result %}
+                <p id="predict-text-star">
+                    Tôi đoán bạn <span class="predict-pos"> {{ predict.msg }}</span> với sản phẩm 😀
+                </p>
+                {% else %}
+                <p id="predict-text-star">
+                    Tôi đoán bạn <span class="predict-nev"> {{ predict.msg }}</span> với sản phẩm 😧
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <footer>
+        Copyright © 2021.
+        Đức & Duy
+    </footer>
+</body>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+
+        const headerTitle = document.querySelector(".header__title");
+
+        window.addEventListener('scroll', () => {
+            console.log(window.scrollY)
+            console.log(headerTitle)
+            if (window.scrollY > 85) {
+                headerTitle.classList.add('active')
+            }else{
+                headerTitle.classList.remove('active')
+            }
+        })
+    });
+</script>
+
+</html>
